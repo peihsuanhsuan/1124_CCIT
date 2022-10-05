@@ -1,12 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1005 Github Tutorial</title>
+    <style>
+        div {
+            font-size: 18pt;
+            color: rgb(25, 125, 255);
+        }
+        .title {color: blue;}
+        #bmi {color: red;}
+    </style>
+    <title>0921</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <title>Bootstrap Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
+
 <body>
-    Tutorial for Github
+    <div class="card text-bg-light mb-3" style="width: 28rem;">
+        <img src="https://tse1.mm.bing.net/th?id=OIP.KZA0Tx3r0btNqxtdSJBb-AHaFn&pid=Api&P=0">
+
+        <div class="card-body">
+            <h5 class="card-title">BMI 計算器</h5>
+
+            <span class="01 title">身　高(cm):</span>
+            <input id="height" type="text" size="11" value=180 style="border: 1px solid #0B6060">
+            <br>
+
+            <span class="01 title">體　重(kg):</span>
+            <input id="weight" type="text" size="11" value=80 style="border: 1px solid #0B6060">
+            <br>
+
+            <button onclick="calBMI()" type="button" class="btn btn-info">計算BMI</button>
+            <div id="bmi"></div>
+
+        </div>
+    </div>
+
+    <script>
+        function calBMI() {
+            var h, w
+            h = parseInt(document.getElementById('height').value)
+            w = parseInt(document.getElementById('weight').value)
+
+            let bmi = getBMI(w, h)
+            if (bmi < 18.5) {
+                result = '體重過輕'
+            } else if (18.5 <= bmi && bmi < 24) {
+                result = '正常範圍'
+            } else if (24 <= bmi && bmi < 27) {
+                result = '體重過重'
+            } else if (27 <= bmi && bmi < 30) {
+                result = '輕度肥胖'
+            } else if (30 <= bmi && bmi < 35) {
+                result = '中度肥胖'
+            } else if (35 <= bmi) {
+                result = '重度肥胖'
+            } else {
+                result = '判斷錯誤';
+            }
+
+            document.getElementById('bmi').innerHTML = `BMI為${bmi}，您的體型${result}`
+            //bmi + result( ‵ ‵ 的寫法較方便閱讀，要學會)
+        }
+        function getBMI(w, h) {
+            h = h / 100
+            return (w / (h * h)).toFixed(1)
+        }
+    </script>
 </body>
+
 </html>
